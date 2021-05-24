@@ -80,26 +80,36 @@ CとDは成分がすべて異なるので行列の相等にならない。
 
 2x2の正方行列同士の場合
 
-```c++
-bool equal(std::vector<double> matrix2)
-{
-    bool flag = false;
-    auto n = (long long)matrix1.size();
-    auto m = (long long)matrix2.size();
-    auto sum = 0;
-    if (n == m){
-     for (long long count = 0; count < n; count++){
-       if (matrix1[count] == matrix2[count]){
-           sum += 1;
-       }
-     }
-    }
-    if (sum == 4){
-        flag = true;
-        return flag;
-    }
+```typescript
+/**
+ * @description Equality Matrix4
+ * @method
+ * @param {Float32Array} a Matrix A
+ * @param {Float32Array} b Matrix B
+ * @returns flag
+ */
+export const equal = (a: Float32Array, b: Float32Array) => {
+  let flag = false;
+  let sum = 0;
+  if (a.length === b.length) {
+    [...Array(a.length).keys()].forEach((count) => {
+      if (a[count] === b[count]) {
+        sum += 1;
+      }
+    });
+  } else {
+    throw new Error("Error Matrix A and B do not have the same size");
+  }
+
+  if (sum === 4) {
+    flag = true;
+
     return flag;
-}
+  }
+
+  return flag;
+};
+
 ```
 
 2x2の正方行列の場合は**4個**、3x3の正方行列の場合は**9個**、4x4の正方行列の場合は**16個*の成分が等しければ良い。
@@ -115,43 +125,25 @@ O =
 \end{bmatrix}
 $$
 
-### ゼロ行列の例
 
-$$
-AO = 
-\begin{bmatrix}
-0 & 0 \\
-0 & 0 \\
-\end{bmatrix}
-, 
-BO = 
-\begin{bmatrix}
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & 0 \\
-\end{bmatrix}
-,
-CO = 
-\begin{bmatrix}
-0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0 \\
-\end{bmatrix}
-$$
 
 ### 実装例
 
 ```c++
-std::vector<double> zero()
-{
-  matrix1[0] = 0;
-  matrix1[1] = 0;
-  matrix1[2] = 0;
-  matrix1[3] = 0;
+/**
+ * @description Zero Matrix
+ * @method
+ * @returns matrix
+ */
+export const zero = () => {
+  const matrix = new Float32Array(4);
+  matrix[0] = 0;
+  matrix[1] = 0;
+  matrix[2] = 0;
+  matrix[3] = 0;
 
-  return matrix1;
-}
+  return matrix;
+};
 ```
 
 成分をすべて0で満たせれば良い。
@@ -194,4 +186,179 @@ $$
 100 & 120 \\
 \end{bmatrix}
 $$
+
+### 実装例
+
+```typescript
+/**
+ * @description matrix addition
+ * @param {Float32Array} a Matrix A
+ * @param {Float32Array} b Matrix B
+ * @returns matrix
+ */
+export const add = (a: Float32Array, b: Float32Array) => {
+  const matrix = new Float32Array(4);
+  if (a.length === b.length) {
+    [...Array(a.length).keys()].forEach((count) => {
+      matrix[count] = a[count] + b[count];
+    });
+  } else {
+    throw new Error("Error Matrix A and B do not have the same size");
+  }
+
+  return matrix;
+};
+```
+
+
+
+## 行列の減法
+
+加法と同じ大きさの行列を引くことができます。
+$$
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{bmatrix}
+ - 
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} - b_{11} & a_{12} - b_{12} \\
+a_{21} - b_{21} & a_{22} - b_{22} \\
+\end{bmatrix}
+$$
+
+### 例
+
+$$
+\begin{bmatrix}
+10 & 20 \\
+30 & 40 \\
+\end{bmatrix}
+ - 
+\begin{bmatrix}
+10 & 20 \\
+30 & 40 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 \\
+0 & 0 \\
+\end{bmatrix}
+$$
+
+### 実装例
+
+```typescript
+/**
+ * @description matrix matrix subtraction
+ * @param {Float32Array} a Matrix A
+ * @param {Float32Array} b Matrix B
+ * @returns matrix
+ */
+export const sub = (a: Float32Array, b: Float32Array) => {
+  const matrix = new Float32Array(4);
+  if (a.length === b.length) {
+    [...Array(a.length).keys()].forEach((count) => {
+      matrix[count] = a[count] - b[count];
+    });
+  } else {
+    throw new Error("Error Matrix A and B do not have the same size");
+  }
+
+  return matrix;
+};
+```
+
+
+
+
+
+## 単位行列
+
+行列の対角成分が1の行列それ以外の成分が0の行列を単位行列と言う。単位行列は大文字の**I**で表す。
+$$
+I = 
+\begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+\end{bmatrix}
+$$
+
+### 実装例
+
+```c++
+std::vector<double> identity()
+{
+  matrix1[0] = 1;
+  matrix1[1] = 0;
+  matrix1[2] = 0;
+  matrix1[3] = 1;
+
+  return matrix1;
+}
+```
+
+## スカラー倍
+
+スカラー値sと行列Aの掛け算
+$$
+s *
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+s * a_{11} & s * a_{12} \\
+s * a_{21} & s * a_{22} \\
+\end{bmatrix}
+$$
+
+### スカラー倍の例
+
+$$
+2 *
+\begin{bmatrix}
+10 & 20 \\
+30 & 40 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 * 10 & 2 * 20 \\
+2 * 30 & 2 * 40 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+20 & 40 \\
+60 & 80 \\
+\end{bmatrix}
+$$
+
+### 実装例
+
+```typescript
+/**
+ * @description scalar multiple
+ * @param s scalar value
+ * @param a matrix A
+ * @returns matrix
+ */
+export const scalarMultiply = (s: number, a: Float32Array) => {
+  const matrix = new Float32Array(4);
+  if (a.length === 4) {
+    [...Array(a.length).keys()].forEach((count) => {
+      matrix[count] = s * a[count];
+    });
+  } else {
+    throw new Error("Error The number of matrix components is four.");
+  }
+
+  return matrix;
+};
+```
 
