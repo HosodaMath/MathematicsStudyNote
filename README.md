@@ -18,7 +18,7 @@
 - Rust
 - TypeScript
 
-行列の大きさは以下の行列のみ
+行列の大きさは以下の行列のみ（当面の間）
 
 - Matrix2
 - Matrix3
