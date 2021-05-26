@@ -15,6 +15,13 @@ export class TestBaseMatrix2 {
     console.log(BaseMatrices.equal(matrix1, testMatrix));
   };
 
+  static test_init = () => {
+    const matrix = BaseMatrices.init();
+    const testMatrix = BaseMatrices.create(0, 0, 0, 0);
+    console.log(matrix.length === 4);
+    console.log(BaseMatrices.equal(matrix, testMatrix) === true);
+  }
+
   static test_zero = () => {
     const matrix1 = BaseMatrices.zero();
     const matrix2 = new Float32Array([0.0, 0.0, 0.0, 0.0]);

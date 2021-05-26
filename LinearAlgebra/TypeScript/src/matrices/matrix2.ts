@@ -13,14 +13,19 @@ class Matrix2 implements BaseMatrix {
 // 関数の設計
 // クラス実装のメソッド
 
+
 /**
+ * Utility Function
  * @description Creating a 2x2 Matrix
- * @static create: (a11: number, a12: number, a21: number, a22: number
+ * @static create: (a11: number, a12: number, a21: number, a22: number)
  * @param {number} a11 a11 is a scalar value
  * @param {number} a12 a12 is a scalar value
  * @param {number} a21 a21 is a scalar value
  * @param {number} a22 a22 is a scalar value
  * @returns matrix
+ * @example
+ * const matrix1 = create(1.0, 0.0, 0.0, 1.0);
+ * const matrix2 = create(10.0, 20.0, 30.0, 40.0);
  */
 export const create = (a11: number, a12: number, a21: number, a22: number) => {
   const matrix = new Float32Array(4);
@@ -31,6 +36,21 @@ export const create = (a11: number, a12: number, a21: number, a22: number) => {
 
   return matrix;
 };
+
+/**
+ * Utility Function
+ * @description Satisfy all components with 0
+ * @static init()
+ * @returns matrix
+ * @example
+ * 
+ */
+export const init = () => {
+  const matrix = new Float32Array(4);
+
+  return matrix;
+}
+
 
 /**
  * @description Equality Matrix4

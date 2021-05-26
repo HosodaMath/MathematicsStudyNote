@@ -5,6 +5,8 @@ const testBaseMatrix2 = () => {
   Matrices.TestBaseMatrix2.test_equal();
   console.log("TestCreate");
   Matrices.TestBaseMatrix2.test_create();
+  console.log("TestInit");
+  Matrices.TestBaseMatrix2.test_create();
   console.log("TestZero");
   Matrices.TestBaseMatrix2.test_zero();
   console.log("TestAdd");
