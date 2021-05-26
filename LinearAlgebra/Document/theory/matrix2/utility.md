@@ -4,6 +4,8 @@
 
 行列の作成と初期化関数の実装
 
+行列を構成している要素を**成分**と言う。
+
 ### 0.0.1 コンピューターで行列を表すには？
 
 **配列として扱う**
@@ -36,7 +38,7 @@ const create = (a11: number, a12: number, a21: number, a22: number) => {
 };
 ```
 
-0.0.4 Example
+### 0.0.4 Example
 
 ```typescript
 const A = create(1.0, 2.0, 3.0, 4.0);
@@ -68,7 +70,52 @@ B =
 $$
 
 
-0.0.5 Demo
+### 0.0.5 Demo
+
+**準備中**
+
+### 0.1.0 行列の初期化
+
+2x2行列では成分の個数は必ず4つないとだめなので安全に初期化するには初期化関数を実装する必要がある。
+
+TypeScriptでは以下のように実装する。
+
+```typescript
+const init = () => {
+  const matrix = new Float32Array(4);
+
+  return matrix;
+}
+```
+
+
+
+### 0.1.1  Example
+
+```typescript
+const matrix = init();
+```
+
+上記のコードを実行すると以下のような配列が生成される。
+
+```typescript
+matrix = [0.0, 0.0, 0.0, 0.0];
+```
+
+この配列は以下と同じ意味になります。
+$$
+matrix = 
+\begin{bmatrix}
+0 & 0 \\
+0 & 0 \\
+\end{bmatrix}
+$$
+
+### 0.1.2  ```init```と```create```の違い
+
+初期化の観点からは大きな違いはありません。どちらも2x2の行列を生成します。
+
+### 0.0.5 Demo
 
 **準備中**
 
