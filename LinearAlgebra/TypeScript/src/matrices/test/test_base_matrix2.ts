@@ -55,4 +55,13 @@ export class TestBaseMatrix2 {
     const test_matrix = BaseMatrices.create(20, 40, 60, 80);
     console.log(BaseMatrices.equal(matrix, test_matrix));
   };
+
+  static test_matrix_multiply = () => {
+    const matrixA = BaseMatrices.create(1, 2, 3, 4);
+    const matrixB = BaseMatrices.create(5, 6, 7, 8);
+    console.log(matrixA.length === 4 && matrixB.length === 4);
+    const matrix1 = BaseMatrices.multiply(matrixA, matrixB);
+    const test_matrix1 = BaseMatrices.create(19, 22, 43, 50);
+    console.log(BaseMatrices.equal(matrix1, test_matrix1) === true);
+  };
 }
