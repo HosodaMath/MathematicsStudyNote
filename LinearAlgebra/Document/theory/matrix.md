@@ -362,3 +362,47 @@ export const scalarMultiply = (s: number, a: Float32Array) => {
 };
 ```
 
+## 行列の乗算
+
+行列同士の掛け算
+$$
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{bmatrix}
+ * 
+\begin{bmatrix}
+b_{11} & b_{12} \\
+b_{21} & b_{22} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} * b_{11} + a_{12} * b_{21} & a_{11} * b_{12} + a_{12} * b_{22} \\
+a_{21} * b_{11} + a_{22} * b_{21} & a_{21} * b_{11} + a_{22} * b_{21} \\
+\end{bmatrix}
+$$
+
+### 行列の積の例
+
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+\end{bmatrix}
+ * 
+\begin{bmatrix}
+5 & 6 \\
+7 & 8 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 * 5 + 2 * 7 & 1 * 6 + 2 * 8 \\
+3 * 5 + 4 * 7 & 3 * 6 + 4 * 8 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+19 & 22 \\
+43 & 50 \\
+\end{bmatrix}
+$$
+
