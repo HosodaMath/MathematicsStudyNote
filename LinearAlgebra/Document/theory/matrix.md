@@ -362,7 +362,7 @@ export const scalarMultiply = (s: number, a: Float32Array) => {
 };
 ```
 
-## 行列の乗算
+## 行列の乗法
 
 行列同士の掛け算
 $$
@@ -405,4 +405,30 @@ $$
 43 & 50 \\
 \end{bmatrix}
 $$
+
+### 実装例
+
+```typescript
+/**
+ * @description matrix multiply
+ * @param a matrix A
+ * @param b matrix B
+ * @returns matrix
+ */
+export const multiply = (a: Float32Array, b: Float32Array) => {
+  const matrix = new Float32Array(4);
+  if (a.length === 4 && b.length === 4) {
+    matrix[0] = a[0] * b[0] + a[1] * b[2];
+    matrix[1] = a[0] * b[1] + a[1] * b[3];
+    matrix[2] = a[2] * b[0] + a[3] * b[2];
+    matrix[3] = a[2] * b[1] + a[3] * b[3];
+  } else {
+    throw new Error(
+      "The number of components of matrix A and matrix B is 4 each."
+    );
+  }
+  return matrix;
+};
+
+```
 
