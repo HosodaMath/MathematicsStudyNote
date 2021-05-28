@@ -76,3 +76,4 @@ const matrix2 = create(10, 20, 30, 40);
 equal(matrix1, matrix2)
 ```
 
+[matrix2のインデックスページに戻る](matrix2.md)
