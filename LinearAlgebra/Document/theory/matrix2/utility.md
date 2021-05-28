@@ -38,7 +38,7 @@ const create = (a11: number, a12: number, a21: number, a22: number) => {
 };
 ```
 
-### 0.0.4 Example
+### 0.0.4 Example Code
 
 ```typescript
 const A = create(1.0, 2.0, 3.0, 4.0);
@@ -87,7 +87,7 @@ const init = () => {
 
 
 
-### 0.1.1  Example
+### 0.1.1  Example Code
 
 ```typescript
 const matrix = init();
