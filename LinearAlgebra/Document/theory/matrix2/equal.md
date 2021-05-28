@@ -22,7 +22,7 @@ B1 =
 3 & 4 \\
 \end{bmatrix}
 $$
-A1とB1は対応するすべて等しいので互いに相等言えます。
+A1とB1は対応するすべて等しいので**互いに相等**言えます。
 
 #### 1.0.2 例 行列A2とB2は相等か？
 
@@ -40,4 +40,39 @@ B2 =
 \end{bmatrix}
 $$
 
-A2とB2は対応するすべて等しくないので互いに相等でない言えます。
+A2とB2は対応するすべて等しくないので**互いに相等でない**言えます。
+
+### 1.1.0 TypeScriptで実装
+
+```typescript
+const equal = (a: Float32Array, b: Float32Array) => {
+  let flag = false;
+  let sum = 0;
+  if (a.length === b.length) {
+    [...Array(a.length).keys()].forEach((count) => {
+      if (a[count] === b[count]) {
+        sum += 1;
+      }
+    });
+  } else {
+    throw new Error("Error Matrix A and B do not have the same size");
+  }
+
+  if (sum === 4) {
+    flag = true;
+
+    return flag;
+  }
+
+  return flag;
+};
+```
+
+### 1.2.0 Example Code
+
+```typescript
+const matrix1 = create(10, 20, 30, 40);
+const matrix2 = create(10, 20, 30, 40);
+equal(matrix1, matrix2)
+```
+
