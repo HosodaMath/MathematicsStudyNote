@@ -97,3 +97,4 @@ const sub = (a: Float32Array, b: Float32Array) => {
 ```
 
 [matrix2のインデックスページに戻る](matrix2.md)
+
