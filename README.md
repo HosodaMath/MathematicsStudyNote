@@ -37,11 +37,12 @@ RustはTypeScriptとC++をもとに実装
 以下の関数の細かいドキュメントを用意する。
 
 - [ ] リンクはHTMLに置き換える
+- [ ] [Matrix2](LinearAlgebra/Document/theory/matrix2/matrix2.md)
 - [x]  [ユーティリティ](LinearAlgebra/Document/theory/matrix2/utility.md)
 - [x]  [行列の相等](LinearAlgebra/Document/theory/matrix2/equal.md)  
-- [ ]  ゼロ行列
-- [ ]  行列の加法
-- [ ]  行列の減法
+- [x]  [ゼロ行列](LinearAlgebra/Document/theory/matrix2/zero.md)
+- [x]  [行列の加法](LinearAlgebra/Document/theory/matrix2/add.md)
+- [x]  [行列の減法](LinearAlgebra/Document/theory/matrix2/sub.md)
 - [ ]  単位行列
 - [ ]  行列のスカラー倍
 - [ ]  行列の乗法
