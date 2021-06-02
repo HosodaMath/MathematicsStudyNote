@@ -45,7 +45,7 @@ RustはTypeScriptとC++をもとに実装
 - [x]  [行列の減法](LinearAlgebra/Document/theory/matrix2/sub.md)
 - [ ]  単位行列
 - [x]  [行列のスカラー倍（行列の定数倍）](LinearAlgebra/Document/theory/matrix2/scalar_multi.md)
-- [ ]  行列の乗法
+- [x]  [行列の乗法](LinearAlgebra/Document/theory/matrix2/multi.md)
 - [ ] ここまで終わらせる。
 
 #### 行列の計算
