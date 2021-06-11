@@ -1,11 +1,3 @@
-/*
-  2x2の正方行列の実装
-  参考文献
-  数学ガール秘密のノート 行列 結城浩
-  線型代数学(新装版) 佐武 一郎 
-  明解演習 線形代数 (明解演習シリーズ) 小寺 平治
-  Introduction to Applied Linear Algebra – Vectors, Matrices, and Least Squares (http://vmls-book.stanford.edu/)
-*/
 #pragma once
 #include <iostream>
 #include <vector>
@@ -16,24 +8,41 @@ namespace math
     class Matrix2
     {
     private:
-      std::vector<double> matrix1;
+      std::vector<double> matrix;
 
     public:
-      // 2x2の正方行列
-      Matrix2(std::vector<double> initMatrix = {0, 0, 0, 0}) : matrix1(initMatrix) {}
+      Matrix2()
+      {
+        matrix = {1, 0, 0, 1};
+      };
 
-      // 行列の相等
-      bool equal(std::vector<double> matrix2)
+      /*
+        2x2行列の作成
+      */
+      std::vector<double> create(double a11, double a12, double a21, double a22)
+      {
+        matrix[0] = a11;
+        matrix[1] = a12;
+        matrix[2] = a21;
+        matrix[3] = a22;
+
+        return matrix;
+      }
+
+      /*
+        行列の相等
+      */
+      bool equal(std::vector<double> matrixA, std::vector<double> matrixB)
       {
         bool flag = false;
-        auto n = (long long)matrix1.size();
-        auto m = (long long)matrix2.size();
+        auto n = (long long)matrixA.size();
+        auto m = (long long)matrixB.size();
         auto sum = 0;
-        if (n == m)
+        if (n == 4 && m == 4)
         {
           for (long long count = 0; count < n; count++)
           {
-            if (matrix1[count] == matrix2[count])
+            if (matrixA[count] == matrixB[count])
             {
               sum += 1;
             }
@@ -49,79 +58,75 @@ namespace math
         return flag;
       }
 
+      /*
+        2x2のゼロ行列を作成
+      */
       std::vector<double> zero()
       {
-        matrix1[0] = 0;
-        matrix1[1] = 0;
-        matrix1[2] = 0;
-        matrix1[3] = 0;
-
-        return matrix1;
-      }
-
-      std::vector<double> identity()
-      {
-        matrix1[0] = 1;
-        matrix1[1] = 0;
-        matrix1[2] = 0;
-        matrix1[3] = 1;
-
-        return matrix1;
-      }
-
-      std::vector<double> add(std::vector<double> matrix2)
-      {
-        matrix1[0] = matrix1[0] + matrix2[0];
-        matrix1[1] = matrix1[1] + matrix2[1];
-        matrix1[2] = matrix1[2] + matrix2[2];
-        matrix1[3] = matrix1[3] + matrix2[3];
-
-        return matrix1;
-      }
-
-      std::vector<double> sub(std::vector<double> matrix2)
-      {
-        matrix1[0] = matrix1[0] - matrix2[0];
-        matrix1[1] = matrix1[1] - matrix2[1];
-        matrix1[2] = matrix1[2] - matrix2[2];
-        matrix1[3] = matrix1[3] - matrix2[3];
-
-        return matrix1;
-      }
-
-      //行列のスカラー倍(行列の定数倍)
-      std::vector<double> scalar_multi(double s)
-      {
-        if (matrix1.size() != 4)
+        for (int count = 0; count < matrix.size(); count++)
         {
-          std::cout << "Error" << std::endl;
-        }
-
-        std::vector<double> matrix;
-        for (int count = 0; count < matrix1.size(); count++)
-        {
-          matrix.push_back(s * matrix1[count]);
+          matrix[count] = 0;
         }
 
         return matrix;
       }
 
-      // 行列の乗法
-      std::vector<double> multi(std::vector<double> matrix2)
+      /*
+        2x2の単位行列を作成
+      */
+      std::vector<double> identity()
       {
-        if (matrix1.size() != 4)
+        matrix = create(1, 0, 0, 1);
+
+        return matrix;
+      }
+
+      /*
+        行列の加法
+        例外処理を実装する
+      */
+      std::vector<double> add(std::vector<double> matrixA, std::vector<double> matrixB)
+      {
+        auto n = (long long)matrixA.size();
+        auto m = (long long)matrixB.size();
+        if (n == 4 && m == 4)
         {
-          std::cout << "Error" << std::endl;
+          for (long long count = 0; count < n; count++)
+          {
+            matrix[count] = matrixA[count] + matrixB[count];
+          }
+        }
+        else
+        {
+          std::cout << "The number of components of matrix A and matrix B is 4 each." << std::endl;
         }
 
-        std::vector<double> matrix = {0, 0, 0, 0};
-        matrix[0] = matrix1[0] * matrix2[0] + matrix1[1] * matrix2[2];
-        matrix[1] = matrix1[0] * matrix2[1] + matrix1[1] * matrix2[3];
-        matrix[2] = matrix1[2] * matrix2[0] + matrix1[3] * matrix2[2];
-        matrix[3] = matrix1[2] * matrix2[1] + matrix1[3] * matrix2[3];
+        return matrix;
+      }
+
+      /*
+        行列の減法
+        例外処理を実装する
+      */
+      std::vector<double> sub(std::vector<double> matrixA, std::vector<double> matrixB)
+      {
+        auto n = (long long)matrixA.size();
+        auto m = (long long)matrixB.size();
+        if (n == 4 && m == 4)
+        {
+          for (long long count = 0; count < n; count++)
+          {
+            matrix[count] = matrixA[count] - matrixB[count];
+          }
+        }
+        else
+        {
+          std::cout << "The number of components of matrix A and matrix B is 4 each." << std::endl;
+        }
 
         return matrix;
       }
     };
+
   }
 }

@@ -2,114 +2,121 @@
 #include <cassert>
 #include "matrix/matrix2.hpp"
 
+void testConstructor()
+{
+  auto matrix = math::mat2::Matrix2();
+}
+
 void testEqual()
 {
-  std::vector<double> matrix1_1 = {10, 20, 30, 40};
-  std::vector<double> matrix2_1 = {50, 60, 70, 80};
-  // test
-  auto equal1 = math::mat2::Matrix2(matrix1_1);
-  auto ans1 = equal1.equal(matrix2_1);
-  assert(ans1 == false);
+  // Test1 false
+  std::vector<double> matrixA1 = {10, 20, 30, 40};
+  std::vector<double> matrixB1 = {50, 60, 70, 80};
+  auto matrix1 = math::mat2::Matrix2();
+  auto equal1 = matrix1.equal(matrixA1, matrixB1);
+  assert(equal1 == false);
 
-  std::vector<double> matrix1_2 = {10, 20, 30, 40};
-  std::vector<double> matrix2_2 = {10, 20, 30, 40};
-  // test
-  auto equal2 = math::mat2::Matrix2(matrix1_2);
-  auto ans2 = equal2.equal(matrix2_2);
-  assert(ans2 == true);
+  // Test2 true
+  std::vector<double> matrixA2 = {10, 20, 30, 40};
+  std::vector<double> matrixB2 = {10, 20, 30, 40};
+  auto matrix2 = math::mat2::Matrix2();
+  auto equal2 = matrix2.equal(matrixA2, matrixB2);
+  assert(equal2 == true);
 }
 
-void testZeroMatrix()
+void testCreate()
+{
+  // Test Create
+  auto init_matrix1 = math::mat2::Matrix2();
+  // 2x2行列の作成
+  auto matrix = init_matrix1.create(10, 20, 30, 40);
+  // 比較行列
+  std::vector<double> answer = {10, 20, 30, 40};
+
+  // 比較
+  auto init_matrix2 = math::mat2::Matrix2();
+  auto equal = init_matrix2.equal(matrix, answer);
+  assert(equal == true);
+}
+
+void testZero()
 {
   auto matrix = math::mat2::Matrix2();
-  auto zero = matrix.zero();
-  // test
+  auto zero_matrix = matrix.zero();
+  // 比較行列
   std::vector<double> answer = {0, 0, 0, 0};
-  auto test_matrix = math::mat2::Matrix2(zero);
-  auto equal = test_matrix.equal(answer);
-  assert(equal == true);
+
+  // 比較
+  auto init_matrix = math::mat2::Matrix2();
+  auto equl = init_matrix.equal(zero_matrix, answer);
+  assert(equl == true);
 }
 
-void testIdentityMatrix()
+void testIdentity()
 {
   auto matrix = math::mat2::Matrix2();
-  auto identity = matrix.identity();
-  // test
+  auto identity_matrix = matrix.identity();
+  // 比較行列
   std::vector<double> answer = {1, 0, 0, 1};
-  auto test_matrix = math::mat2::Matrix2(identity);
-  auto equal = test_matrix.equal(answer);
+
+  // 比較
+  auto init_matrix = math::mat2::Matrix2();
+  auto equl = init_matrix.equal(identity_matrix, answer);
+  assert(equl == true);
+}
+
+void testAdd()
+{
+  std::vector<double> matrixA = {10, 20, 30, 40};
+  std::vector<double> matrixB = {50, 60, 70, 80};
+  // 標本行列
+  std::vector<double> sample = {60, 80, 100, 120};
+
+  // 比較
+  auto init_matrix1 = math::mat2::Matrix2();
+  auto add = init_matrix1.add(matrixA, matrixB);
+  auto answer = math::mat2::Matrix2();
+  auto equal = answer.equal(add, sample);
   assert(equal == true);
 }
 
-
-void testAddMatrix()
+void testSub()
 {
-  std::vector<double> matrix1 = {10, 20, 30, 40};
-  std::vector<double> matrix2 = {50, 60, 70, 80};
+  std::vector<double> matrixA = {10, 20, 30, 40};
+  std::vector<double> matrixB = {50, 60, 70, 80};
+  // 標本行列
+  std::vector<double> sample = {-40, -40, -40, -40};
 
-  auto matrix = math::mat2::Matrix2(matrix1);
-  auto add = matrix.add(matrix2);
-
-  // test
-  std::vector<double> answer = {60, 80, 100, 120};
-  auto test_matrix = math::mat2::Matrix2(add);
-  auto equal = test_matrix.equal(answer);
-  assert(equal == true);
-}
-
-void testSubMatrix()
-{
-  std::vector<double> matrix1 = {10, 20, 30, 40};
-  std::vector<double> matrix2 = {50, 60, 70, 80};
-
-  auto matrix = math::mat2::Matrix2(matrix1);
-  auto sub = matrix.sub(matrix2);
-
-  // test
-  std::vector<double> answer = {-40, -40, -40, -40};
-  auto test_matrix = math::mat2::Matrix2(sub);
-  auto equal = test_matrix.equal(answer);
-  assert(equal == true);
-}
-
-void testScalarMulti()
-{
-  std::vector<double> matrix1 = {10, 20, 30, 40};
-  double scalar = 5.0;
-
-  auto matrix = math::mat2::Matrix2(matrix1);
-  auto s_multi = matrix.scalar_multi(scalar);
-
-  // test
-  std::vector<double> answer = {50, 100, 150, 200};
-  auto test_matrix = math::mat2::Matrix2(s_multi);
-  auto equal = test_matrix.equal(answer);
-  assert(equal == true);
-}
-
-void testMulti()
-{
-  std::vector<double> matrix1 = {1, 2, 3, 4};
-  std::vector<double> matrix2 = {5, 6, 7, 8};
-  std::vector<double> answer = {19, 22, 43, 50};
-
-  auto matrix = math::mat2::Matrix2(matrix1);
-  auto multi = matrix.multi(matrix2);
-  // test
-  auto test_matrix = math::mat2::Matrix2(multi);
-  auto equal = test_matrix.equal(answer);
+  // 比較
+  auto init_matrix1 = math::mat2::Matrix2();
+  auto sub = init_matrix1.sub(matrixA, matrixB);
+  auto answer = math::mat2::Matrix2();
+  auto equal = answer.equal(sub, sample);
   assert(equal == true);
 }
 
 int main()
 {
+  // Test Mateix2 Constructor
+  testConstructor();
+
+  // Test Create Matrix
+  testCreate();
+
+  // Test Equal Matrix
   testEqual();
-  testZeroMatrix();
-  testIdentityMatrix();
-  testAddMatrix();
-  testSubMatrix();
-  testScalarMulti();
-  testMulti();
+
+  // Test Zero Matrix
+  testZero();
+
+  // Test Identity Matrix
+  testIdentity();
+
+  // Test Addition
+  testAdd();
+
+  // Test Subtraction
+  testSub();
 
   return 0;
 }
