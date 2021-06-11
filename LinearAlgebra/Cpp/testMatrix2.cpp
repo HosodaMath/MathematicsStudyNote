@@ -30,6 +30,18 @@ void testZeroMatrix()
   assert(equal == true);
 }
 
+void testIdentityMatrix()
+{
+  auto matrix = math::mat2::Matrix2();
+  auto identity = matrix.identity();
+  // test
+  std::vector<double> answer = {1, 0, 0, 1};
+  auto test_matrix = math::mat2::Matrix2(identity);
+  auto equal = test_matrix.equal(answer);
+  assert(equal == true);
+}
+
+
 void testAddMatrix()
 {
   std::vector<double> matrix1 = {10, 20, 30, 40};
@@ -93,6 +105,7 @@ int main()
 {
   testEqual();
   testZeroMatrix();
+  testIdentityMatrix();
   testAddMatrix();
   testSubMatrix();
   testScalarMulti();

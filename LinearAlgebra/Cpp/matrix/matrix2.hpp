@@ -59,6 +59,16 @@ namespace math
         return matrix1;
       }
 
+      std::vector<double> identity()
+      {
+        matrix1[0] = 1;
+        matrix1[1] = 0;
+        matrix1[2] = 0;
+        matrix1[3] = 1;
+
+        return matrix1;
+      }
+
       std::vector<double> add(std::vector<double> matrix2)
       {
         matrix1[0] = matrix1[0] + matrix2[0];
