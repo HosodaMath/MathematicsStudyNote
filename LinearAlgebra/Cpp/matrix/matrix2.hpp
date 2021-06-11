@@ -78,6 +78,40 @@ namespace math
 
         return matrix1;
       }
+
+      //行列のスカラー倍(行列の定数倍)
+      std::vector<double> scalar_multi(double s)
+      {
+        if (matrix1.size() != 4)
+        {
+          std::cout << "Error" << std::endl;
+        }
+
+        std::vector<double> matrix;
+        for (int count = 0; count < matrix1.size(); count++)
+        {
+          matrix.push_back(s * matrix1[count]);
+        }
+
+        return matrix;
+      }
+
+      // 行列の乗法
+      std::vector<double> multi(std::vector<double> matrix2)
+      {
+        if (matrix1.size() != 4)
+        {
+          std::cout << "Error" << std::endl;
+        }
+
+        std::vector<double> matrix = {0, 0, 0, 0};
+        matrix[0] = matrix1[0] * matrix2[0] + matrix1[1] * matrix2[2];
+        matrix[1] = matrix1[0] * matrix2[1] + matrix1[1] * matrix2[3];
+        matrix[2] = matrix1[2] * matrix2[0] + matrix1[3] * matrix2[2];
+        matrix[3] = matrix1[2] * matrix2[1] + matrix1[3] * matrix2[3];
+
+        return matrix;
+      }
     };
   }
 }
