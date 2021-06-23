@@ -63,9 +63,16 @@ $\vec{|b|} = \sqrt{4^2 + 1^2} = \sqrt{17}$
 
 ### ベクトルの相等vector equality
 
-2つのベクトルの対応する成分が等しいかどうか
+2つのベクトルの対応する成分が等しいかどうか判定
 
 $\vec{a} = \vec{b} = (a_x = b_x \wedge a_y = b_y)$
+
+### ベクトルの非相等vector inequality
+
+2つのベクトルの対応する成分は等しくないかどうか判定
+
+$\vec{a} \neq \vec{b} = (a_x \neq b_x \wedge a_y \neq b_y)$
+
 
 ### ベクトルの加算と減算Vector addition and Subtraction of vectors
 
