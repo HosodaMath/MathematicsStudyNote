@@ -1,0 +1,8 @@
+/**
+ * @description
+ * @class Vector2
+ * @todo Translation from Japanese to English
+ * @license MIT
+ * @author Shingo Hosoda
+ * @copyright Shingo Hosoda
+ */
