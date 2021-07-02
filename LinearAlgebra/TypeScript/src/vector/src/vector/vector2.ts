@@ -1,5 +1,6 @@
 /**
- * @description
+ * @description GitHub Code
+ * https://github.com/HosodaMath/MathematicsStudyNote/blob/main/LinearAlgebra/TypeScript/src/vector/src/vector/vector2.ts
  * @class Vector2
  * @todo Translation from Japanese to English
  * @license MIT
@@ -24,6 +25,8 @@ export class Vector2 {
    * @description Vector addition
    * @method Vector2
    * @param v v is a vector.
+   * @todo Implementing Static Methods -> x
+   * @todo test -> x
    */
   add = (v: Vector2) => {
     this.x = this.x + v.x;
@@ -36,6 +39,8 @@ export class Vector2 {
    * @description Subtraction of vectors
    * @method Vector2
    * @param v v is a vector.
+   * @todo Implementing Static Methods -> x
+   * @todo test -> x
    */
   sub = (v: Vector2) => {
     this.x = this.x - v.x;
@@ -48,6 +53,8 @@ export class Vector2 {
    * @description Scalar Multiplication of a vectors
    * @method Vector2
    * @param s s is a scalar.
+   * @todo Implementing Static Methods -> x
+   * @todo test
    */
   scalar_multi = (s: number) => {
     this.x = this.x * s;
@@ -57,12 +64,55 @@ export class Vector2 {
   };
 
   /**
+   * @description Inverse Vector
+   * @method Vector2
+   * @todo Implementing Static Methods -> x
+   * @todo test
+   */
+  negative = () => {
+    this.x = -this.x;
+    this.y = -this.y;
+
+    return this;
+  };
+
+  /**
+   * @description Magnitude of the vector
+   * @method Vector2
+   * @todo Implementing Static Methods -> x
+   * @todo test
+   */
+  magnitude = () => {
+    const pow_x = Math.pow(this.x, 2);
+    const pow_y = Math.pow(this.y, 2);
+    const result = Math.sqrt(pow_x + pow_y);
+
+    return result;
+  };
+
+  /**
+   * @description Normalizing vectors
+   * @method Vector2
+   * @todo Implementing Static Methods
+   * @todo test
+   */
+  normalize = () => {
+    this.x = this.x / this.magnitude();
+    this.y = this.y / this.magnitude();
+
+    return this;
+  };
+
+  /**
    * @description vector equality
    * @method Vector2
    * @param v v is a vector.
    * @returns boolean
+   * @todo Implementing Static Methods -> x
+   * @todo test
+   * @todo Review of implementation methods!! -> Change the method name to equal
    */
-  equality = (v: Vector2) => {
+  equal = (v: Vector2) => {
     const result = this.x === v.x && this.y === v.y;
 
     return result;
@@ -73,8 +123,11 @@ export class Vector2 {
    * @method Vector2
    * @param v v is a vector.
    * @returns boolean
+   * @todo Implementing Static Methods -> x
+   * @todo test
+   * @todo Review of implementation methods!! -> Change the method name to unequal
    */
-  inequality = (v: Vector2) => {
+  unequal = (v: Vector2) => {
     const result = this.x !== v.x && this.y !== v.y;
 
     return result;
@@ -86,6 +139,7 @@ export class Vector2 {
    * @description It outputs a zero vector.
    * @static Vector2
    * @returns Vector2
+   * @todo test -> x
    */
   static zero = () => {
     const x = 0;
@@ -95,13 +149,16 @@ export class Vector2 {
   };
 
   /**
-   * @description It outputs one vector.
+   * @description It outputs unit vector.
    * @static Vector2
+   * @param v
    * @returns Vector2
+   * @todo test
+   * @todo Review of implementation methods!! -> To fix!!
    */
-  static one = () => {
+  static unit = (v: Vector2) => {
     const x = 1;
-    const y = 1;
+    const y = 0;
 
     return new Vector2(x, y);
   };
@@ -112,6 +169,7 @@ export class Vector2 {
    * @param v v is a vector.
    * @param w w is a vector.
    * @returns Vector2
+   * @todo test -> x
    */
   static add = (v: Vector2, w: Vector2) => {
     const x = v.x + w.x;
@@ -126,6 +184,7 @@ export class Vector2 {
    * @param v v is a vector.
    * @param w w is a vector.
    * @returns Vector2
+   * @todo test  -> x
    */
   static sub = (v: Vector2, w: Vector2) => {
     const x = v.x - w.x;
@@ -140,10 +199,51 @@ export class Vector2 {
    * @param v v is a vector.
    * @param s s is a scalar.
    * @returns Vector2
+   * @todo test
    */
   static scalar_multi = (v: Vector2, s: number) => {
     const x = v.x * s;
     const y = v.y * s;
+
+    return new Vector2(x, y);
+  };
+
+  /**
+   * @description Inverse Vector
+   * @static Vector2
+   * @todo Implementing Static Methods
+   * @todo test
+   */
+  static negative = (v: Vector2) => {
+    const x = -v.x;
+    const y = -v.y;
+
+    return new Vector2(x, y);
+  };
+
+  /**
+   * @description Find the magnitude of the vector
+   * @param v v is a vector.
+   * @returns number
+   * @todo test
+   */
+  static magnitude = (v: Vector2) => {
+    const pow_x = Math.pow(v.x, 2);
+    const pow_y = Math.pow(v.y, 2);
+    const result = Math.sqrt(pow_x + pow_y);
+
+    return result;
+  };
+
+  /**
+   * @description Normalizing vectors
+   * @static Vector2
+   * @param v v is a vector.
+   * @returns Vector2
+   */
+  static normalize = (v: Vector2) => {
+    const x = v.x / Vector2.magnitude(v);
+    const y = v.y / Vector2.magnitude(v);
 
     return new Vector2(x, y);
   };
@@ -154,8 +254,10 @@ export class Vector2 {
    * @param v v is a vector.
    * @param w w is a vector.
    * @returns boolean
+   * @todo test
+   * @todo Review of implementation methods!! -> Change the method name to equal
    */
-  static equality = (v: Vector2, w: Vector2) => {
+  static equal = (v: Vector2, w: Vector2) => {
     const result = v.x === w.x && v.y === w.y;
 
     return result;
@@ -167,8 +269,10 @@ export class Vector2 {
    * @param v v is a vector.
    * @param w w is a vector.
    * @returns boolean
+   * @todo test
+   * @todo Review of implementation methods!! -> Change the method name to unequal
    */
-  static inequality = (v: Vector2, w: Vector2) => {
+  static unequal = (v: Vector2, w: Vector2) => {
     const result = v.x !== w.x && v.y !== w.y;
 
     return result;
