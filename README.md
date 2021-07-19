@@ -1,5 +1,7 @@
 # MathematicsStudyNote
 
+[MathematicsWithProgrammingに移動しました](https://github.com/HosodaMath/MathematicsWithProgramming)
+
 ## LinearAlgebra線形代数
 
 使用しているマークダウンエディターはTyporaです。
